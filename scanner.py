@@ -1,19 +1,19 @@
 import nmap
 
-# ----------- INPUT -----------
+# INPUT
 target = input("Enter Target IP: ")
 
-# ----------- INIT SCANNER -----------
+# INIT SCANNER
 scanner = nmap.PortScanner()
 
 print("\nScanning target... Please wait...\n")
 
 scanner.scan(target, '1-5000')
 
-# ----------- RISK SCORE -----------
+# RISK SCORE
 risk_score = 0
 
-# ----------- VULNERABILITY CHECK -----------
+# VULNERABILITY CHECK
 def check_vulnerability(port):
     if port == 21:
         return "⚠ FTP - Anonymous login possible", 5
@@ -26,7 +26,7 @@ def check_vulnerability(port):
     else:
         return "No major vulnerability", 0
 
-# ----------- ATTACK SIMULATION -----------
+# ATTACK SIMULATION
 def simulate_attack(port):
     print("\n--- Simulating Attack ---")
     
@@ -50,7 +50,7 @@ def simulate_attack(port):
     else:
         print("No simulation available")
 
-# ----------- MAIN LOGIC -----------
+# MAIN LOGIC
 open_ports = []
 
 for host in scanner.all_hosts():
@@ -71,20 +71,20 @@ for host in scanner.all_hosts():
                 
                 risk_score += score
 
-# ----------- SIMULATION OPTION -----------
+# SIMULATION OPTION
 simulate = input("\nDo you want to simulate attacks? (yes/no): ")
 
 if simulate.lower() == "yes":
     for port in open_ports:
         simulate_attack(port)
 
-# ----------- FINAL REPORT -----------
+# FINAL REPORT
 print("\n--- FINAL REPORT ---")
 print(f"Target: {target}")
 print(f"Open Ports: {open_ports}")
 print(f"Risk Score: {risk_score}")
 
-# ----------- SAVE REPORT -----------
+# SAVE REPORT
 with open("report.txt", "w") as f:
     f.write("Vulnerability Assessment Report\n")
     f.write(f"Target: {target}\n")
