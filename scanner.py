@@ -3,7 +3,7 @@ import nmap
 # INPUT
 target = input("Enter Target IP: ")
 
-# INIT SCANNER
+# INIT SCANNER 
 scanner = nmap.PortScanner()
 
 print("\nScanning target... Please wait...\n")
